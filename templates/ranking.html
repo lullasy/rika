@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+  <!-- Form
+  ================================================== -->
+<form class="form-inline">
+  <label class="sr-only" for="userId">User id</label>
+  <input type="text" class="form-control mb-2 mr-sm-2" id="userId" placeholder="405311">
+
+  <label class="sr-only" for="bookmark">Bookmark</label>
+  <div class="input-group mb-2 mr-sm-2">
+    <input type="text" class="form-control" id="bookmarkId" placeholder="2">
+  </div>
+
+  <button type="submit" class="btn btn-primary mb-2">Filter</button>
+</form>
+
+{% if user_id %}
+  <p>{{user_id}}</p>
+  <p>{{bookmark_id}}</p>
+{% endif %}
+
+{% endblock %}
