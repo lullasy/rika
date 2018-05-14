@@ -1,39 +1,24 @@
 from flask import Flask
-from flask import redirect
 from flask import render_template
 from flask import request
-from flask import url_for
-
-import numpy as np
+from lib import naropy
 
 
 app = Flask(__name__)
 
 
-def picked_up():
-    messages = ["Hello",
-                "yoyo",
-                "poyoyoyoyoyon"]
-    return np.random.choice(messages)
-
-
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    title = "welcome"
-    message = picked_up()
-    return render_template('index.html',
-                           message=message, title=title)
-
-
-@app.route('/post', methods=['GET', 'POST'])
-def post():
-    title = "KONNNICHIHA"
+    narou = naropy.Naropy()
     if request.method == 'POST':
-        name = request.form['name']
-        return render_template('index.html',
-                               name=name, title=title)
+        user_id = request.form['user_id']
+        bookmark_id = request.form['bookmark_id']
+        print("post")
+
+        return render_template('ranking.html',
+                               user_id=user_id, bookmark_id=bookmark_id)
     else:
-        return redirect(url_for('index'))
+        return render_template('ranking.html')
 
 
 if __name__ == '__main__':
