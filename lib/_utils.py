@@ -27,7 +27,7 @@ def detail_from_ncode(ncode):
     return ret[1]
 
 
-def details_from_list(ncode_list):
+def details_from_rank_list(ncode_list):
     ret = []
     for nowrank in ncode_list:
         detail = detail_from_ncode(nowrank["ncode"])

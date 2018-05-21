@@ -1,7 +1,7 @@
 import urllib.request
 import re
 from bs4 import BeautifulSoup
-import _utils
+from lib import _utils
 
 # FIXME: これconstantsに逃がす
 defaultrank_url = "http://api.syosetu.com/rank/rankget/?out=json&gzip=5"
@@ -78,9 +78,9 @@ class Naropy:
 
         all_bookmarks = []
         for page in range(int(total_bookmarks / 10)):
-            now_bookmarks = self.bookmarks_from_page(userid=userid,
-                                                     category=category,
-                                                     page=page)
+            now_bookmarks = self.bookmark_get_from_page(userid=userid,
+                                                        category=category,
+                                                        page=page)
             all_bookmarks.extend(now_bookmarks)
 
         return all_bookmarks
@@ -108,5 +108,5 @@ if __name__ == '__main__':
     # print(monthly(year=2017, month=9, day=1))
     # print(len(monthly(year=2017, month=9, day=1)))
     naropy = Naropy()
-    print(naropy.ranking_monthly(year=2017, month=9, day=5))
+    print(naropy.ranking_monthly(year=2017, month=9, day=1))
     pass
